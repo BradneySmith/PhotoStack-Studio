@@ -56,7 +56,29 @@ PhotoStack is a simple image editing software developed for a local business, an
 
 ## Installation:
 
+To install, clone the repository to your desktop and run the executable:
 
-## FAQs
-- Q: Can PhotoStack Studio run in full-screen borderless?
-- A: Yes, go to the menu bar > View > Full Screen. Similarly, you can go to menu bar > View > Windowed to return to windowed mode
+`git clone https://github.com/BradneySmith/PhotoStack-Studio.git`
+
+## How to Use PhotoStack Studio
+1. Move the PhotoStack folder to your desktop.
+
+2. Open the folder and the PhotoStack Studio.exe.
+
+3. By default, PhotoStack Studio looks for images in the unstacked_images directory, which is in the same directory as the executable. You can drag images into this folder if you want to keep your unedited images in one place.
+
+4. Alternatively, you can use images from other directories on your desktop. To do this, click on the dropdown menu below the 'Photos' label in the top left of the screen. This will give a list of all the folders on your desktop, as well as a folder for images that are saved directly to your desktop. This folder is called 'Desktop'.
+
+5. Choose the stack layout you want (Vertical, Horizontal or 2 Column) using the radio buttons at the bottom of the screen.
+
+6. Click the image thumbnails to add them to the preview area. Images are added in the order they are clicked. To remove an image, simply click its thumbnail button again.
+
+7. To use the resize feature, select the 'Resize' radio button and enter the dimensions in the 'Width' and 'Height' entry boxes under the 'Dimensions' label.
+
+8. To save an image, choose an extension, then enter a file name (these are set to 'jpg' and 'untitled' by default). When you are ready, click 'Export' in the bottom right or go to File > Save.
+
+9. If an image with the given file name already exists, you will be asked if you want to overwrite it. To give a new name, simply type a different file name into the entry box. To overwrite the existing file, click 'Export' again, or go to File > Save.
+
+10. To clear the screen, you can unclick each image thumbnail, or go File > New.
+
+11. To enter Full Screen Borderless mode go to View > Full Screen Borderless. To exit Full Screen mode, go to View > Windowed.
