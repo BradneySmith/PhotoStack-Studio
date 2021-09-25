@@ -56,9 +56,33 @@ PhotoStack is a simple image editing software developed for a local business, an
 
 ## Installation:
 
+### Windows
+
 To install, clone the repository to your desktop and run the executable:
 
 `git clone https://github.com/BradneySmith/PhotoStack-Studio.git`
+
+### MacOS and Linux
+
+For MacOS and Linux users, make sure you have the PIL module installed. To do this, you can use:
+
+`pip install PIL`
+
+To install, clone the repository to your desktop:
+
+`git clone https://github.com/BradneySmith/PhotoStack-Studio.git`
+
+#### From the terminal:
+cd into the PhotoStack Studio directory on your desktop
+
+Run the main.py file:
+
+`python3 main.py`
+
+#### From a GUI:
+Open the PhotoStack Studio folder
+
+Run the main.py file
 
 ## How to Use PhotoStack Studio
 1. Move the PhotoStack folder to your desktop.
