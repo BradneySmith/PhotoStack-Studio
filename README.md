@@ -10,6 +10,7 @@ PhotoStack is a simple image editing software developed for a local business, an
 
 - Combine images in 3 layouts: vertical, horiztonal, 2-column
 - Resize single images to specified dimensions
+- Save as JPG and PNG file types
 - Browse different photo directories
 - Combine images from multiple directories
 - Responsive widget resizing
