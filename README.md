@@ -1,6 +1,8 @@
 # PhotoStack Studio - Version 1.0
 
-PhotoStack is a simple image editing software developed for a local business, and was written in Python 3.9 and converted to an executable file using PyInstaller 4.5.1. The business need was to combine images in 3 different configurations, which have been called stacks. The stack layouts are: a vertical stack, a horizontal stack and a two-column stack - all of which were to be resized automatically to fit nicely and reduce file size. Another requirement was have an option to resize a single image manually, by inputting the desired dimensions for height and width. Additional features have been added to improve ease-of-use, and a full list is given below.
+<p align="justify">PhotoStack Studio is a simple image editing software developed for a local business, and was written in Python 3.9 and converted to an executable file using PyInstaller 4.5.1. The business need was to combine images in 3 different configurations, which have been called stacks. The stack layouts are: a vertical stack, a horizontal stack and a two-column stack - all of which were to be resized automatically to fit nicely and reduce file size. Another requirement was have an option to resize a single image manually, by inputting the desired dimensions for height and width. Additional features have been added to improve ease-of-use, and a full list is given below.</p?
+
+<table></table>
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/39648391/134772365-6148e3b0-4340-435e-a29c-a0ded4e6546e.png" alt="PhotoStack">
@@ -9,14 +11,15 @@ PhotoStack is a simple image editing software developed for a local business, an
 ## Main Features:
 
 - Combine images in 3 layouts: vertical, horiztonal, 2-column
+- Automatically resize stacked images to reduce file size
 - Resize single images to specified dimensions
 - Save as JPG and PNG file types
 - Browse different photo directories
 - Combine images from multiple directories
 - Responsive widget resizing
-- Full-screen bordless mode
-- Warning prompt for overwriting existing file with identical file name
-- Error handling for invalid resize dimensions/file name etc
+- Full-screen borderless mode
+- Warning prompt for overwriting existing files
+- Error handling for invalid resize dimensions, file name etc
 
 ## Gallery:
 
@@ -39,7 +42,7 @@ PhotoStack is a simple image editing software developed for a local business, an
 
   <tr>
     <td><p align="center">2 Column Stack Mode</p></td>
-    <td><p align="center">Resize</p></td>
+    <td><p align="center">Resize Mode (for single images)</p></td>
   </tr>
 
   <tr>
@@ -69,7 +72,7 @@ For MacOS and Linux users, make sure you have the PIL module installed. To do th
 
 `pip install PIL`
 
-To install, clone the repository to your desktop:
+Next, clone the repository to your desktop:
 
 `git clone https://github.com/BradneySmith/PhotoStack-Studio.git`
 
@@ -86,9 +89,11 @@ Open the PhotoStack Studio folder
 Run the main.py file
 
 ## How to Use PhotoStack Studio
+<p align="justify">
+  
 1. Move the PhotoStack folder to your desktop.
 
-2. Open the folder and the PhotoStack Studio.exe.
+2. Open the folder and run PhotoStack Studio.exe (Windows only) or the Main.py file (MacOS and Linux).
 
 3. By default, PhotoStack Studio looks for images in the unstacked_images directory, which is in the same directory as the executable. You can drag images into this folder if you want to keep your unedited images in one place.
 
@@ -107,3 +112,4 @@ Run the main.py file
 10. To clear the screen, you can unclick each image thumbnail, or go File > New.
 
 11. To enter Full Screen Borderless mode go to View > Full Screen Borderless. To exit Full Screen mode, go to View > Windowed.
+</p>
