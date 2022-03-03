@@ -35,8 +35,9 @@ option_filetype.set('jpg')
 
 # ---------------------------------- Functions -------------------------------
 
-''' Returns list of filenames for all images in unstacked_photos directory '''
+
 def get_image_list():
+    ''' Returns list of filenames for all images in unstacked_photos directory '''
     file_list = []
     extensions = ['png','jpg','jpeg']
     os.chdir(photo_directory)
@@ -49,8 +50,9 @@ def get_image_list():
     os.chdir(main_directory)
     return file_list
 
-''' Takes in a PIL.Image object, resizes it, and returns a PIL.Image object '''
+
 def resize_from_PIL_image(image, max_width = None, max_height = None):
+    ''' Takes in a PIL.Image object, resizes it, and returns a PIL.Image object '''
     old_width, old_height = image.size
     
     # Limited by height
@@ -74,8 +76,8 @@ def resize_from_PIL_image(image, max_width = None, max_height = None):
     return resized_image
 
 
-''' Takes in a file name and resizes the image, returns it as a Tkinter PhotoImage object '''
 def resize_image(filename, max_width = None, max_height = None):
+    ''' Takes in a file name and resizes the image, returns it as a Tkinter PhotoImage object '''
     global photo_directory
     image = Image.open(filename)
     width, height = image.size 
@@ -106,8 +108,8 @@ def resize_image(filename, max_width = None, max_height = None):
     return resized_image
 
 
-''' Takes in a list of file names and returns the smallest height and the smallest width '''
 def get_min_dimensions(file_list):
+    ''' Takes in a list of file names and returns the smallest height and the smallest width '''
     os.chdir(photo_directory)
     images = [Image.open(x) for x in file_list]
     widths, heights = zip(*(i.size for i in images))
@@ -115,9 +117,8 @@ def get_min_dimensions(file_list):
     os.chdir(main_directory)
     return min_width, min_height
 
-
-''' Returns the new dimensions an image should be for a given width and aspect ratio '''
 def get_new_vertical_dimensions(dimensions, min_width):
+    ''' Returns the new dimensions an image should be for a given width and aspect ratio '''
     width, height = dimensions
     ratio = width/height
     new_width = min_width
@@ -125,8 +126,8 @@ def get_new_vertical_dimensions(dimensions, min_width):
     return new_width, new_height
 
 
-''' Returns the new dimensions an image should be for a given height and aspect ratio '''
 def get_new_horizontal_dimensions(dimensions, min_height):
+    ''' Returns the new dimensions an image should be for a given height and aspect ratio '''
     width, height = dimensions
     ratio = height/width
     new_height = min_height
@@ -134,8 +135,8 @@ def get_new_horizontal_dimensions(dimensions, min_height):
     return new_width, new_height
 
 
-''' Takes in a list of file names and returns a list of resized PIL.Image objects, and a list of the new heights and widths '''
 def resize_to_min_width_or_height(file_list, min_width, min_height):
+    ''' Takes in a list of file names and returns a list of resized PIL.Image objects, and a list of the new heights and widths '''
     resized_images = []
     for file in file_list:
         image = Image.open(file)
@@ -149,8 +150,8 @@ def resize_to_min_width_or_height(file_list, min_width, min_height):
     return resized_images, new_widths, new_heights
 
 
-''' Combines resized PIL.Image objects from a list and returns a single vertical PIL.Image object '''
 def create_vertical(new_heights, min_width, resized_images):
+    ''' Combines resized PIL.Image objects from a list and returns a single vertical PIL.Image object '''
     y_offset = 0
     total_height = sum(new_heights)
     new_image = Image.new('RGB', (min_width, total_height))
@@ -160,8 +161,8 @@ def create_vertical(new_heights, min_width, resized_images):
     return new_image
 
 
-''' Combines resized PIL.Image objects from a list and returns a single horizontal PIL.Image object '''
 def create_horizontal(new_widths, min_height, resized_images):
+    ''' Combines resized PIL.Image objects from a list and returns a single horizontal PIL.Image object '''
     x_offset = 0
     total_width = sum(new_widths)
     new_image = Image.new('RGB', (total_width, min_height))
@@ -170,9 +171,9 @@ def create_horizontal(new_widths, min_height, resized_images):
         x_offset += im.size[0]
     return new_image
 
-''' Creates 2 vertical columns of images and combines them '''
+
 def create_2_column(new_heights, min_width, resized_images):
-    
+    ''' Creates 2 vertical columns of images and combines them '''
     half_num = round(len(resized_images)/2)
     left_images = resized_images[0:half_num]
     right_images = resized_images[half_num:]
@@ -199,8 +200,8 @@ def create_2_column(new_heights, min_width, resized_images):
     return final_image
 
 
-''' Resizes the preview image on screen, updates image width and height labels '''
 def resize_preview_exists():
+    ''' Resizes the preview image on screen, updates image width and height labels '''
     new_image = resize_from_PIL_image(output_image, max_width=root.winfo_width()-400, max_height =root.winfo_height()-250)
     new_image = ImageTk.PhotoImage(new_image)
     lbl_preview_box['text'] = ''
@@ -208,15 +209,15 @@ def resize_preview_exists():
     lbl_preview_box.image = new_image # prevents garbage collection destroying image
     
     
-''' Handles preview box resize if preview image does not exist i.e the screen is blank '''
-def resize_preview_not_exists():       
+def resize_preview_not_exists():  
+    ''' Handles preview box resize if preview image does not exist i.e the screen is blank '''
     btn_export['state'] = tk.DISABLED
     lbl_preview_box['image'] = ''
     lbl_preview_box['text'] = 'Add photos to build preview'
 
 
-''' Updates the preview image if resized, image is added/removed etc. Also handles export, radio button and dimension lable updates '''
 def update_preview():   
+    ''' Updates the preview image if resized, image is added/removed etc. Also handles export, radio button and dimension lable updates '''
     os.chdir(photo_directory)    
     lbl_success['text'] = ''
     global output_image
@@ -280,8 +281,8 @@ def update_preview():
     os.chdir(main_directory)
 
 
-''' Increases/decreases the preview image with screen resizing '''
 def resize(event):
+    ''' Increases/decreases the preview image with screen resizing '''
     global window_width, window_height, output_image
     if event.widget.widgetName == "toplevel":
         
@@ -295,16 +296,16 @@ def resize(event):
                 resize_preview_not_exists()   
 
 
-''' Takes in a Button object and returns the file name string '''
 def get_filename_from_button(button):
+    ''' Takes in a Button object and returns the file name string '''
     global image_list, button_list
     index = button_list.index(button) # find which number button was clicked, e.g. the first (0), the second (1)
     image_name = image_list[index] # find the full size image of the button clicked
     return image_name
 
 
-''' Handles photo buttons to add/remove photos from the preview screen '''
 def click(button):
+    ''' Handles photo buttons to add/remove photos from the preview screen '''
     if get_filename_from_button(button) in preview_list:
         preview_list.remove(get_filename_from_button(button))
         button.config(relief=tk.RAISED)
@@ -316,8 +317,8 @@ def click(button):
     update_preview()
 
 
-''' Checks file name and if valid saves photo  '''
 def export():
+    ''' Checks file name and if valid saves photo  '''
     if ent_new_filename.get() == '':
         lbl_success['fg'] = 'red'
         lbl_success['text'] = 'File name cannot be empty'
@@ -349,8 +350,8 @@ def export():
             lbl_success['text'] = 'Empty Dimension(s)'
         
         
-''' Removes all images from the preview screen '''
 def clear_preview():
+    ''' Removes all images from the preview screen '''
     global preview_list
     preview_list.clear()
     for button in button_list:
@@ -358,8 +359,8 @@ def clear_preview():
     update_preview()
 
 
-''' Deletes all image thumbnail buttons from the scrollbar '''
 def delete_buttons():
+    ''' Deletes all image thumbnail buttons from the scrollbar '''
     global button_list
     if len(button_list) > 0:
         for button in button_list:
@@ -367,8 +368,8 @@ def delete_buttons():
         button_list.clear()
 
 
-''' Creates image thumbnail button in scrollbar for each image in photo directory '''
 def create_buttons(photo_directory):
+    ''' Creates image thumbnail button in scrollbar for each image in photo directory '''
     global image_list
     image_list = get_image_list()
     for count, filename in enumerate(image_list):
@@ -380,8 +381,8 @@ def create_buttons(photo_directory):
         button_list.append(pic_button)
 
 
-''' Changes the photo directory, deletes old thumbnail images and creates new ones '''
 def update_directory(clicked_directory):
+    ''' Changes the photo directory, deletes old thumbnail images and creates new ones '''
     global photo_directory, image_list, output_image
     delete_buttons()
     image_list.clear()
@@ -394,20 +395,18 @@ def update_directory(clicked_directory):
         photo_directory = desktop+'/'+clicked_directory
     create_buttons(photo_directory)    
     
-    
-''' Resets buttons and preview screen when switching to resize mode '''
+
 def enable_resize():
+    ''' Resets buttons and preview screen when switching to resize mode '''
     global preview_list
     preview_list.clear()
     for button in button_list:
         button.config(relief=tk.RAISED)
     update_preview()
-    #ent_image_width.delete(0, tk.END)
-    #ent_image_height.delete(0, tk.END)
     
     
-''' Greys out dimensions labels and entries - called by other radio buttons when disabling resize mode '''
 def disable_resize():
+    ''' Greys out dimensions labels and entries - called by other radio buttons when disabling resize mode '''
     ent_image_width['state'] = 'disabled'
     ent_image_height['state'] = 'disabled'
     lbl_image_width['fg'] = 'gray'
@@ -417,8 +416,8 @@ def disable_resize():
     update_preview()
     
     
-''' Enters borderless fullscreen mode '''
 def full_screen():
+    ''' Enters borderless fullscreen mode '''
     root.attributes('-fullscreen', True)
 
 
@@ -427,8 +426,8 @@ def windowed():
     root.attributes('-fullscreen', False)
     
     
-''' Displays help message box '''   
 def help_message():
+    ''' Displays help message box '''   
     tk.messagebox.showinfo(title='Help', message='For help refer to the help.txt file in the PhotoStack directory')
 
 
